@@ -98,5 +98,5 @@ int main() {
     h.insert(60);
     h.insert(55);
     
-    // h.printHeap();
+    h.printHeap();
 }
