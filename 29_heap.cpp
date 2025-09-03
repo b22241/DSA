@@ -97,6 +97,7 @@ int main() {
     h.insert(70);
     h.insert(60);
     h.insert(55);
+    h.insert(55);
     
     h.printHeap();
 }
