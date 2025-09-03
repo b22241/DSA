@@ -1,1 +1,0 @@
-printf("Dequeuing element %d\n", dequeue());
