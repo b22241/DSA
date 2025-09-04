@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-//IF ELSE
+// IF ELSE
 // int main() {
 //     int marks;
 //     cout<<"enter your makrs:" << std::endl;
@@ -98,7 +98,7 @@ using namespace std;
 
 // int main()
 // {
-//     int num;
+    // int num;
 //     cout<<"the number"<<endl;
 //     cin>>num;
 //     cout<<dosomething(num)<<endl;
@@ -107,7 +107,7 @@ using namespace std;
 
 
 
-                                                                   //-----------------------PATTERNS------------------------
+                                                                //    -----------------------PATTERNS------------------------
 // int main()
 // {
 //     int rows,columns;
@@ -417,47 +417,47 @@ using namespace std;
 
 
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-int max_sum(int n, int arr[]) {
-    int cnt = 0;
+// int max_sum(int n, int arr[]) {
+//     int cnt = 0;
 
-    // Count the number of negative elements
-    for (int i = 0; i < n; i++) {
-        if (arr[i] < 0) {
-            cnt++;
-            arr[i] = -arr[i];  // Flip negative numbers to positive
-        }
-    }
+//     // Count the number of negative elements
+//     for (int i = 0; i < n; i++) {
+//         if (arr[i] < 0) {
+//             cnt++;
+//             arr[i] = -arr[i];  // Flip negative numbers to positive
+//         }
+//     }
 
-    int sum = accumulate(arr, arr + n, 0); // Calculate the sum of the array
+//     int sum = accumulate(arr, arr + n, 0); // Calculate the sum of the array
 
-    if (cnt % 2 == 0) {
-        return sum; // If count of negatives is even, return the sum
-    } else {
-        // If count of negatives is odd, subtract twice the smallest element
-        int minElement = *min_element(arr, arr + n);
-        return sum - 2 * minElement;
-    }
-}
+//     if (cnt % 2 == 0) {
+//         return sum; // If count of negatives is even, return the sum
+//     } else {
+//         // If count of negatives is odd, subtract twice the smallest element
+//         int minElement = *min_element(arr, arr + n);
+//         return sum - 2 * minElement;
+//     }
+// }
 
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int n;
-        cin >> n;
-        int arr[n];
+// int main() {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int n;
+//         cin >> n;
+//         int arr[n];
 
-        for (int i = 0; i < n; i++) {
-            cin >> arr[i];
-        }
+//         for (int i = 0; i < n; i++) {
+//             cin >> arr[i];
+//         }
 
-        cout << max_sum(n, arr) << endl;
-    }
-    return 0;
-}
+//         cout << max_sum(n, arr) << endl;
+//     }
+//     return 0;
+// }
 
 
 

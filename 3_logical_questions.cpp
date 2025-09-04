@@ -10,13 +10,7 @@ int fac(int n){
     if(n==0){
         return 1;
     }
-    else{
-        int product=1;
-        for(int i=1;i<=n;i++){
-        product=product*i;
-    }
-    return product;
-    }
+    return n*fac(n-1);
 }
 
 int binary(int n){
@@ -32,15 +26,14 @@ int binary(int n){
 }
 
 int decimal(int n){
-    int decimal=0;
+    int num=0;
     int i=0;
     while(n>0){
-        int rem=n%10;
-        decimal=decimal+rem*fac(i);
+        num=num+(n%10)*(1 << i);
         i++;
         n=n/10;
     }
-    return decimal;
+    return num;
 }
 
 void reverseArray(int arr[], int n) {
@@ -383,20 +376,28 @@ int aggresive_cows(vector<int> &arr,int cows){
     return ans;
 }
 
-int bubble_sort(vector<int> &arr){
-    for( int i=0;i<arr.size(),i++){
-        for ( int j=i;j<arr.size()-i-1;j++){
-            if (arr[j+1]>arr[j]);{
-                swap(arr[j],arr[j+1]);
-            }
-        }
-    }
-    return arr[];
-}
+// int bubble_sort(vector<int> &arr){
+//     for( int i=0;i<arr.size(),i++){
+//         for ( int j=i;j<arr.size()-i-1;j++){
+//             if (arr[j+1]>arr[j]);{
+//                 swap(arr[j],arr[j+1]);
+//             }
+//         }
+//     }
+//     return arr[];
+// }
+
+
 int main() {
     vector<int> arr = {1,2,8,4,9};
+    int n=arr.size();
     int cows=3;
-    cout<<bubble_sort(arr);
+    // cout<<fac(3);
+    // cout<<binary(12);
+    // cout<<decimal(1100);
+    // reverseArray(arr.data(), n);
+    // subArray(arr.data(),n);
+    // kadaneAlgorithm(arr.data(),n);
     return 0;
 }
 
