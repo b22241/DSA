@@ -3,15 +3,12 @@ using  namespace std;
 #include <algorithm>
 
 int reverse(int n) {
-    int k = 0;
-    int p; 
-    while (n > 0) {
-        p = (k * 10) + (n % 10);  
-        k = p;                   
-        n = n / 10;               
+    int num = 0;   
+    while(n > 0) {
+        num = num * 10 + n % 10; 
+        n = n / 10;            
     }
-    if (n==k) return 1;
-    else return 0;
+    return num; 
 }
 
 int gcd(int n1, int n2)
@@ -45,5 +42,6 @@ int main()
     int n2=36;
     cout << "GCD of " << n1 << " and " << n2 << " is: " << gcd(n1, n2) << std::endl;
     cout<<euclidean_gcd(n1,n2)<<endl;
-    cout<<n1%n2;
+    // cout<<n1%n2;
+    // cout<<"reverserd number is: "<<reverse(243);
 }
