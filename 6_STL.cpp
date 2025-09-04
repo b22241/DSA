@@ -147,10 +147,14 @@ int main(){
     m.emplace("phone",22);
     m.emplace("moble",4345);
     //m.erase("tv");
+    m.insert({"ram",20});
+    m["shyam"]=30;
+    m["shiv"]=40;
+    // cout<<m["ram"];
+    // cout<<m.at("ram");
     for(auto p:m){
-                cout<<p.first<<" "<<p.second<<endl;
-            }
-        
+        cout<<p.first<<"-"<<p.second<<endl;
+    }
 }
 
 
