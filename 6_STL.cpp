@@ -139,6 +139,7 @@ using namespace std;
 
 //unordered_map , arranges data in random order
 //time complexity O(1);
+//search time for ordered map is O(logn) and for unorderd map is O(1),every operation happens in constast time in unordered map
 int main(){
     unordered_map<string,int>m;
     m.emplace("tv",23);
