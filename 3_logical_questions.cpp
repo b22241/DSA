@@ -382,7 +382,7 @@ int aggresive_cows(vector<int> &arr,int cows){
 int main() {
     // vector<int> arr = {1,2,8,4,9};
     // int n=arr.size();
-    int cows=3;
+    //int cows=3;
     // cout<<fac(3);
     // cout<<binary(12);
     // cout<<decimal(1100);
