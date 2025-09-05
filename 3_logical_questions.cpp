@@ -265,46 +265,37 @@ while (st <= end) {
 return -1; // Should never reach here
 }
 
-bool isValid(const vector<int> &arr, int n, int m, int maxallowedpages) {
-    int students = 1;
-    int pages = 0;
-
-    for (int i = 0; i < n; i++) { 
-        if (arr[i] > maxallowedpages) {
-            return false;
+bool isValid(const vector<int> &arr, int books, int students, int maxallowedpages) {
+    int student=1;
+    int pages=0;
+    for(int i=0;i<books;i++){
+        if(pages+arr[i]<=maxallowedpages){
+            pages=pages+arr[i];
         }
-
-        if (pages + arr[i] <= maxallowedpages) {
-            pages += arr[i];
-        } else {
-            students++;
-            pages = arr[i];
-            if (students > m) return false;
+        else{
+        student++;
+        pages=arr[i];
         }
     }
-
-    return true; // Ensuring function returns a value
+    if(student>students) return false;
+    return true;
 }
 
-int book_allocation(const vector<int> &arr, int n, int m) {
-    if (m > n) return -1;
-
-    int sum = accumulate(arr.begin(), arr.end(), 0);
-    int st = *max_element(arr.begin(), arr.end()); 
-    int end = sum;
-    int ans = -1;
-
-    while (st <= end) {
-        int mid = st + (end - st) / 2;
-
-        if (isValid(arr, n, m, mid)) { 
+int book_allocation(const vector<int> &arr, int books, int students) {
+    int ans=-1;
+    int start=*max_element(arr.begin(),arr.end());
+    int range=accumulate(arr.begin(),arr.end(),0);
+    int end=range;
+    while(start<=end){
+        int mid=start + (end - start) / 2;
+        if(isValid(arr,books,students,mid)){
             ans = mid;
-            end = mid - 1;
-        } else {
-            st = mid + 1; 
+            end=mid-1;
+        }
+        else{
+            start=mid+1;
         }
     }
-
     return ans; 
 }
 
@@ -389,8 +380,8 @@ int aggresive_cows(vector<int> &arr,int cows){
 
 
 int main() {
-    vector<int> arr = {1,2,8,4,9};
-    int n=arr.size();
+    // vector<int> arr = {1,2,8,4,9};
+    // int n=arr.size();
     int cows=3;
     // cout<<fac(3);
     // cout<<binary(12);
@@ -398,6 +389,10 @@ int main() {
     // reverseArray(arr.data(), n);
     // subArray(arr.data(),n);
     // kadaneAlgorithm(arr.data(),n);
+    vector<int>arr={2,1,3,4};
+    int students=2;
+    int books=4;
+    cout<<book_allocation(arr,books,students);
     return 0;
 }
 
