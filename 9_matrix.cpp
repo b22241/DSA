@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-int get_max_sum(int mat[][3],int rows,int cols){
+int get_maxRowsum(int mat[][3],int rows,int cols){
     int max_sum=INT_MIN;
     for (int i=0;i<rows;i++){
         int rowsum=0;
@@ -29,7 +29,8 @@ int diagonal_sum(int mat[3][3],int rows,int cols){
     return diagonal_sum;
 }
 
-pair<int, int> linear_search(int mat[3][3], int rows, int cols, int target) {
+
+pair<int, int> binarySearch(int mat[3][3], int rows, int cols, int target) {
     int i = 0;
     while (i < rows && mat[i][cols - 1] < target) {
         i++;
@@ -60,16 +61,16 @@ int main(){
     int rows=3;
     int cols=3;
     //cout<<matrix[1][1];
-    //cout<<get_max_sum(mat,rows, cols);
+    // coutS<<get_maxRowsum(mat,rows, cols);
     //cout<<diagonal_sum(mat,rows, cols);
     int target = 8;
-    pair<int, int> result = linear_search(mat, 3, 3, target);
+    pair<int, int> result = binarySearch(mat, 3, 3, target);
 
-    if (result.first != -1) {
-        cout << target << " is present at row " << result.first << " and column " << result.second << endl;
-    } else {
-        cout << target << " is not present in the matrix." << endl;
-    }
+    // if (result.first != -1) {
+    //     cout << target << " is present at row " << result.first << " and column " << result.second << endl;
+    // } else {
+    //     cout << target << " is not present in the matrix." << endl;
+    // }
 
     return 0;
 }
