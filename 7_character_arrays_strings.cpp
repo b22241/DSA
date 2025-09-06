@@ -85,25 +85,25 @@ using namespace std;
 // }
 
 
-int stringCompression(string &chars) {
-    int idx = 0;
-    for (int i = 0; i < chars.length();) {
-        char ch = chars[i];
-        int count = 0;
-        while (i < chars.length() && chars[i] == ch) {
-            count++;
-            i++;
-        }
-        chars[idx++] = ch;  // store the character
-        if (count > 1) {
-            string str = to_string(count);
-            for (char dig : str) {
-                chars[idx++] = dig;  // store each digit of count
-            }
-        }
-    }
-    return idx;  // return new length
-}
+// int stringCompression(string &chars) {
+//     int idx = 0;
+//     for (int i = 0; i < chars.length();) {
+//         char ch = chars[i];
+//         int count = 0;
+//         while (i < chars.length() && chars[i] == ch) {
+//             count++;
+//             i++;
+//         }
+//         chars[idx++] = ch;  // store the character
+//         if (count > 1) {
+//             string str = to_string(count);
+//             for (char dig : str) {
+//                 chars[idx++] = dig;  // store each digit of count
+//             }
+//         }
+//     }
+//     return idx;  // return new length
+// }
 
 int main() {
     string s = "daabcbaabcbc";
