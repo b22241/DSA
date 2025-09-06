@@ -215,4 +215,4 @@ using namespace std;
 //swap   swap(a,b);
 //min   *min_element(vec.begin(),vec.end())
 //max   *max_element(vec.begin(),vec.end())
-//builtin_popcount
+//builtin_popcount  cout<<__builtin_popcountll(15);   4(number of bits)
