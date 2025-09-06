@@ -95,37 +95,6 @@ void merge_2_sorted_arr(vector<int>& arr1, int n1, vector<int>& arr2, int n2) {
 }
 
 void next_permutation(int arr[], int n) {
-    int i = n - 1;
-    int pivot;
-
-    // Step 1: Find the pivot where arr[i-1] < arr[i]
-    while (i > -1 && arr[i - 1] > arr[i]) {  // STRICTLY '>' (no equal check)
-        i--;
-    }
-
-    pivot = i - 1;
-    cout << "Pivot: " << pivot << endl;
-
-    // If pivot does not exist, reverse the entire array
-    if (pivot == 1) {
-        reverse(arr, arr + n);
-        return;
-    }
-
-    else{
-         // Step 2: Swap pivot with the last element
-    swap(arr[pivot], arr[n - 1]);
-
-    // Step 3: Reverse the suffix correctly
-    for (int j = i, k = n - 1; j < k; j++, k--) {
-        swap(arr[j], arr[k]);
-    }
-}
-}
-
-
-
-void next(int arr[], int n) {
     int pivot = -1;
 
     // find pivot
