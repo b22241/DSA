@@ -55,10 +55,8 @@ using namespace std;
 // int main() {
 //     string str = "A man, a plan, a canal: Panama";
 //     cout << (isPalindrome(str) ? "True" : "False") << endl;
-
 //     return 0;
 // }
-
 
 // string removeOccurrences(string s, string part) {
 //     while (s.length() > 0 && s.find(part) < s.length()) {
@@ -86,9 +84,35 @@ using namespace std;
 //     cout<<ans.substr(1);
 // }
 
+
+int stringCompression(string &chars) {
+    int idx = 0;
+    for (int i = 0; i < chars.length();) {
+        char ch = chars[i];
+        int count = 0;
+        while (i < chars.length() && chars[i] == ch) {
+            count++;
+            i++;
+        }
+        chars[idx++] = ch;  // store the character
+        if (count > 1) {
+            string str = to_string(count);
+            for (char dig : str) {
+                chars[idx++] = dig;  // store each digit of count
+            }
+        }
+    }
+    return idx;  // return new length
+}
+
 int main() {
     string s = "daabcbaabcbc";
     string part = "abc bb";    
     // reverseString(part);
+    // int newLength = stringCompression(s);
+    // cout << "Compressed: ";
+    // for (int i = 0; i < newLength; i++) {
+    //     cout << s[i];
+    // }
     // cout << removeOccurrences(s, part) << endl;  // Expected output: "dab"
 }
