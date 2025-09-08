@@ -62,8 +62,7 @@ using namespace std;
 //     return {repeating, missing};
 // }
 
-// time and space complexity--O(n)
-// int duplicate(vector<int>vec){
+// int duplicate(vector<int>vec){           // time and space complexity--O(n)
 //     unordered_set<int> s;
 //     for(int i=0;i<vec.size();i++){
 //         if(s.find(vec[i])!=s.end()){
@@ -74,26 +73,22 @@ using namespace std;
 //     }
 // }
 
-//O(1) space complexity
-int findDuplicate(vector<int>& arr)
-{
-    int slow = arr[0], fast = arr[0];
-
-// Phase 1: Finding the intersection point using Floyd’s Cycle Detection Algorithm
-do {
-   slow = arr[slow];  // Moves one step
-   fast = arr[arr[fast]];  // Moves two steps
-} while (slow != fast);
-
-// Phase 2: Finding the entrance to the cycle (duplicate number)
-slow = arr[0];
-while (slow != fast) {
-   slow = arr[slow];  // Moves one step
-   fast = arr[fast];  // Moves one step
-}
-
-return slow; // The duplicate number
-}
+// int findDuplicate(vector<int>& arr)       //O(1) space complexity
+// {
+//     int slow = arr[0], fast = arr[0];
+// // Phase 1: Finding the intersection point using Floyd’s Cycle Detection Algorithm
+// do {
+//    slow = arr[slow];  // Moves one step
+//    fast = arr[arr[fast]];  // Moves two steps
+// } while (slow != fast);
+// // Phase 2: Finding the entrance to the cycle (duplicate number)
+// slow = arr[0];
+// while (slow != fast) {
+//    slow = arr[slow];  // Moves one step
+//    fast = arr[fast];  // Moves one step
+// }
+// return slow; // The duplicate number
+// }
 
 int main(){
     vector<vector<int>> mat={{9,1,7},{8,9,2},{3,4,6}};
@@ -114,5 +109,5 @@ int main(){
     // vector<int> result = duplicate_value(vec);
     // cout<<result[0];
 
-    cout<<duplicate(vec);
+    // cout<<duplicate(vec);
 }
