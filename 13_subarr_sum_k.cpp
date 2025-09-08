@@ -9,28 +9,32 @@
 using namespace std;
 
 
-//O(n2)
-// vector<vector<int>> sumSubarrays(int arr[], int n, int target) {
+// vector<vector<int>> sumSubarrays(int arr[], int n, int target) {            //O(n2)
 //     vector<vector<int>> ans;
-
 //     for (int start = 0; start < n; start++) {
 //         int sum = 0;
 //         vector<int> element;
-
 //         for (int i = start; i < n; i++) {
 //             sum += arr[i];
 //             element.push_back(arr[i]);
-
 //             if (sum == target) {
 //                 ans.push_back(element);
 //             }
 //         }
 //     }
-
 //     return ans;
 // }
 
 vector<vector<int>> sumSubarrays(int arr[], int n, int target){
+    vector<int>prefix(n);
+    prefix[0]=arr[0];
+    for(int i=1;i<n;i++){
+        prefix[i]=prefix[i-1]+arr[i];
+    }
+}
+
+
+vector<vector<int>> sumSubarrays(int arr[], int n, int target){                //O(n2)
     vector<int> prefix_sum;
     int cout=0;
     int sum=0;
@@ -51,9 +55,8 @@ vector<vector<int>> sumSubarrays(int arr[], int n, int target){
             }
         }
     }
-    return count;
-    
 }
+
 
 int main() {
     int arr[] = {9, 4, 20, 3, 10, 5};
