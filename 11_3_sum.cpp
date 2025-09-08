@@ -52,7 +52,7 @@ using namespace std;
 //     }
 // }
     
-// vector<vector<int>> optimised(vector<int>& vec) {             //most optimised O(nlogn+n2)
+// vector<vector<int>> optimised(vector<int>& vec) {             //most optimised O(nlogn(for sorting)+n2)
 //     int n = vec.size();
 //     vector<vector<int>> ans;
 //     sort(vec.begin(), vec.end());
