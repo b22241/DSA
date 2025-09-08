@@ -7,7 +7,7 @@ using namespace std;
 #include <algorithm> // Add this include for std::reverse
 
 
-//character arrays  advanced version of strings
+//character arrays  
 // int main(){
 //     char str[]={"hello"};
 //     cout<<strlet(str);   5 

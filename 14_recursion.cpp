@@ -29,12 +29,13 @@ using namespace std;
 //     // Include the current element in subset
 //     ans.push_back(arr[i]);
 //     printSubsets(arr, ans, i + 1);
+
 //     // Exclude the current element from subset (backtracking)
 //     ans.pop_back();
 //     printSubsets(arr, ans, i + 1);
 // }
 
-//if values are repeating in arr,we can store values in set , set stores only unique values
+//if values are repeating in arr,we can store values in set , set stores uniwure values
 void printSubsets(vector<int> &arr, set<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
     // Base case: when i reaches the end of arr
     if (i == arr.size()) {
@@ -56,7 +57,7 @@ int main() {
     vector<int>subset;
     // cout<<isSorted(arr,0);
     printSubsets(arr, ans, 0,subset);
-    for(auto vec:ans){
+    for(auto &vec:ans){
         for(auto  val:vec){
             cout<<val<<" ";
         }
