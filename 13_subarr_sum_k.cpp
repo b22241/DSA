@@ -25,48 +25,46 @@ using namespace std;
 //     return ans;
 // }
 
-vector<vector<int>> sumSubarrays(int arr[], int n, int target){
-    vector<int>prefix(n);
-    prefix[0]=arr[0];
-    for(int i=1;i<n;i++){
-        prefix[i]=prefix[i-1]+arr[i];
-    }
-}
 
-
-vector<vector<int>> sumSubarrays(int arr[], int n, int target){                //O(n2)
+int sumSubarrays(int arr[], int n, int target) {   // O(n^2)
     vector<int> prefix_sum;
-    int cout=0;
-    int sum=0;
+    int count = 0;
+    int sum = 0;
+    unordered_map<int,int> m;
+
     for (int i = 0; i < n; i++) {  
-        sum = sum+arr[i];
+        sum = sum + arr[i];
         prefix_sum.push_back(sum);
     }
-    for (int j=1;j<n;j++){
-        int a=prefix_sum[j]-target;
-        if(target==prefix_sum[j]){
-            cout++;
-            continue;
+
+    for (int i = 0; i < n; i++) {
+        int val = prefix_sum[i] - target;
+
+        if (prefix_sum[i] == target) {   // direct match
+            count++;
         }
-        for(int l=0;l<j;l++){
-            if(prefix_sum[l]==a){
-                cout++;
-                break;
-            }
+        if (m.find(val) != m.end()) {    // found subarray sum
+            count += m[val];
+        }
+        else{
+            m[prefix_sum[i]]++;  // store current prefix sum
         }
     }
+    return count;
 }
+
 
 
 int main() {
-    int arr[] = {9, 4, 20, 3, 10, 5};
+    int arr[] = {9, 4, 0, 20, 3, 10, 5};
     int n = sizeof(arr) / sizeof(arr[0]);
     int target = 33;
 
-    vector<int> result=sumsub_array(arr,n,target);
-    for(int val:result){
-        cout<< val<<" ";
-    }
+    // vector<int> result=sumsub_array(arr,n,target);
+    // for(int val:result){
+    //     cout<< val<<" ";
+    // }
+    cout<<sumSubarrays(arr,n,target);
 
 
     // vector<vector<int>> result = sumSubarrays(arr, n, target);
