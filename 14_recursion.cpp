@@ -29,42 +29,76 @@ using namespace std;
 //     // Include the current element in subset
 //     ans.push_back(arr[i]);
 //     printSubsets(arr, ans, i + 1);
-
 //     // Exclude the current element from subset (backtracking)
 //     ans.pop_back();
 //     printSubsets(arr, ans, i + 1);
 // }
 
 //if values are repeating in arr,we can store values in set , set stores uniwure values
-void printSubsets(vector<int> &arr, set<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
+//method 1
+// void printSubsets(vector<int> &arr, set<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
+//     // Base case: when i reaches the end of arr
+//     if (i == arr.size()) {
+//         ans.insert(subset);
+//         return;
+//     }
+//     // Include the current element in subset
+//     subset.push_back(arr[i]);
+//     printSubsets(arr, ans, i + 1,subset);
+
+//     // Exclude the current element from subset (backtracking)
+//     subset.pop_back();
+//     printSubsets(arr, ans, i + 1,subset);
+// }
+
+// //method 2
+// void printSubsets_(vector<int> &arr, vector<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
+//     // Base case: when i reaches the end of arr
+//     if (i == arr.size()) {
+//         ans.push_back(subset);
+//         return;
+//     }
+//     // Include the current element in subset
+//     subset.push_back(arr[i]);
+//     printSubsets_(arr, ans, i + 1, subset);
+
+//     // Exclude the current element from subset (backtracking)
+//     subset.pop_back();
+//     int idx = i + 1;
+//     while (idx < arr.size() && arr[idx] == arr[idx - 1]) idx++;
+//     printSubsets_(arr, ans, idx, subset);
+// }
+
+
+// int main() {
+//     vector<int> arr = {1, 2, 2}; // Input set
+//     vector<vector<int>> ans; // To store subsets
+//     vector<int>subset;
+//     // cout<<isSorted(arr,0);
+//     printSubsets_(arr, ans, 0,subset);
+//     for(auto &vec:ans){
+//         for(auto  val:vec){
+//             cout<<val<<" ";
+//         }
+//         cout<<endl;
+//     }
+// }
+
+//find all permutations of a arr
+vector<vector<int>> allPermutations(vector<int>& arr,int i,vector<int>&set, vector<vector<int>>&ans){
     // Base case: when i reaches the end of arr
     if (i == arr.size()) {
-        ans.insert(subset);
+        ans.push_back(set);
         return;
     }
     // Include the current element in subset
-    subset.push_back(arr[i]);
-    printSubsets(arr, ans, i + 1,subset);
+    set.push_back(arr[i]);
+    allPermutations(arr,i+1,set,ans);
 
     // Exclude the current element from subset (backtracking)
-    subset.pop_back();
-    printSubsets(arr, ans, i + 1,subset);
+    set.pop_back();
+    allPermutations(arr,i+1,set,ans);
 }
-
-int main() {
-    vector<int> arr = {1, 2, 2}; // Input set
-    set<vector<int>> ans; // To store subsets
-    vector<int>subset;
-    // cout<<isSorted(arr,0);
-    printSubsets(arr, ans, 0,subset);
-    for(auto &vec:ans){
-        for(auto  val:vec){
-            cout<<val<<" ";
-        }
-        cout<<endl;
-    }
-}
-
 
 
 
