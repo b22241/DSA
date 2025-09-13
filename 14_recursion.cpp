@@ -45,7 +45,6 @@ using namespace std;
 //     // Include the current element in subset
 //     subset.push_back(arr[i]);
 //     printSubsets(arr, ans, i + 1,subset);
-
 //     // Exclude the current element from subset (backtracking)
 //     subset.pop_back();
 //     printSubsets(arr, ans, i + 1,subset);
@@ -61,7 +60,6 @@ using namespace std;
 //     // Include the current element in subset
 //     subset.push_back(arr[i]);
 //     printSubsets_(arr, ans, i + 1, subset);
-
 //     // Exclude the current element from subset (backtracking)
 //     subset.pop_back();
 //     int idx = i + 1;
@@ -83,22 +81,6 @@ using namespace std;
 //         cout<<endl;
 //     }
 // }
-
-//find all permutations of a arr
-vector<vector<int>> allPermutations(vector<int>& arr,int i,vector<int>&set, vector<vector<int>>&ans){
-    // Base case: when i reaches the end of arr
-    if (i == arr.size()) {
-        ans.push_back(set);
-        return;
-    }
-    // Include the current element in subset
-    set.push_back(arr[i]);
-    allPermutations(arr,i+1,set,ans);
-
-    // Exclude the current element from subset (backtracking)
-    set.pop_back();
-    allPermutations(arr,i+1,set,ans);
-}
 
 
 
@@ -157,3 +139,56 @@ vector<vector<int>> allPermutations(vector<int>& arr,int i,vector<int>&set, vect
 
 //     return 0;
 // }
+
+
+
+// class Solution {
+// public:
+//     bool helper(vector<vector<char>>& board, int row, int col) {
+//         if (row == 9) return true;
+
+//         int next_row = row;
+//         int next_col = col + 1;
+//         if (next_col == 9) {
+//             next_row = row + 1;
+//             next_col = 0;
+//         }
+//         if (board[row][col] != '.') {
+//             return helper(board, next_row, next_col);
+//         }
+
+//         for (char digit = '1'; digit <= '9'; digit++) {
+//             if (isSafe(board, digit, row, col)) {
+//                 board[row][col] = digit;
+//                 if (helper(board, next_row, next_col)) return true; ///backtracking
+//                 board[row][col] = '.';
+//             }
+//         }
+
+//         return false;
+//     }
+
+//     bool isSafe(vector<vector<char>>& board, char digit, int row, int col) {
+//         for (int j = 0; j < 9; j++) {
+//             if (board[row][j] == digit) return false;
+//         }
+//         for (int i = 0; i < 9; i++) {
+//             if (board[i][col] == digit) return false;
+//         }
+
+//         int start_row = row - row % 3;
+//         int start_col = col - col % 3;
+//         for (int i = start_row; i < start_row + 3; i++) {
+//             for (int j = start_col; j < start_col + 3; j++) {
+//                 if (board[i][j] == digit) return false;
+//             }
+//         }
+
+//         return true;
+//     }
+
+//     void solveSudoku(vector<vector<char>>& board) {
+//         helper(board, 0, 0);
+//     }
+// };
+
