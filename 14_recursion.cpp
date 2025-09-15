@@ -141,7 +141,7 @@ using namespace std;
 // }
 
 
-
+///sudoku solver problem
 // class Solution {
 // public:
 //     bool helper(vector<vector<char>>& board, int row, int col) {
@@ -192,3 +192,68 @@ using namespace std;
 //     }
 // };
 
+//rat in a maze problem
+// void rat(vector<vector<int>> &maze, int row, int col, vector<char> &path, vector<vector<char>> &ans) {
+//     int n = maze.size();
+
+//     // boundary check
+//     if (row < 0 || col < 0 || row >= n || col >= n || maze[row][col] == 0) return;
+
+//     // reached destination
+//     if (row == n - 1 && col == n - 1) {
+//         ans.push_back(path);
+//         return;
+//     }
+
+//     // mark visited
+//     maze[row][col] = 0;
+
+//     // Move Down
+//     path.push_back('D');
+//     rat(maze, row + 1, col, path, ans);
+//     path.pop_back();
+
+//     // Move Right
+//     path.push_back('R');
+//     rat(maze, row, col + 1, path, ans);
+//     path.pop_back();
+
+//     // unmark visited (backtrack)
+//     maze[row][col] = 1;
+// }
+
+// int main() {
+//     vector<vector<int>> maze = {
+//         {1, 0, 0, 0},
+//         {1, 1, 0, 1},
+//         {1, 1, 0, 0},
+//         {0, 1, 1, 1}
+//     };
+
+//     vector<char> path;
+//     vector<vector<char>> ans;
+//     rat(maze, 0, 0, path, ans);
+
+//     // print all paths
+//     for (auto p : ans) {
+//         for (char step : p) {
+//             cout << step;
+//         }
+//         cout << " ";
+//     }
+//     cout << endl;
+// }
+
+
+//combination sum probelm
+void sum(vector<int>arr,int target,vector<int>ans,vector<vector<int>>finalAnswer){
+
+}
+
+int main(){
+    vector<int>arr={2,3,5};
+    int target=8;
+    vector<int>ans;
+    vector<vector<int>>finalAnswer;
+    sum(arr,target,ans,finalAnswer);
+}
