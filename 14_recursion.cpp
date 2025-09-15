@@ -6,6 +6,7 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <numeric>             //to find sum of elements in vector
 using namespace std;
 
 //check if arr is sorted
@@ -16,7 +17,7 @@ using namespace std;
 //     return false;
 // }
 
-//print all subsets of an array
+// print all subsets of an array
 // void printSubsets(vector<int> &arr, vector<int> &ans, int i) {              // //O(2^n*n)
 //     // Base case: when i reaches the end of arr
 //     if (i == arr.size()) {
@@ -34,51 +35,48 @@ using namespace std;
 //     printSubsets(arr, ans, i + 1);
 // }
 
-//if values are repeating in arr,we can store values in set , set stores uniwure values
-//method 1
-// void printSubsets(vector<int> &arr, set<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
-//     // Base case: when i reaches the end of arr
-//     if (i == arr.size()) {
-//         ans.insert(subset);
-//         return;
-//     }
-//     // Include the current element in subset
-//     subset.push_back(arr[i]);
-//     printSubsets(arr, ans, i + 1,subset);
-//     // Exclude the current element from subset (backtracking)
-//     subset.pop_back();
-//     printSubsets(arr, ans, i + 1,subset);
-// }
+// //if values are repeating in arr,we can store values in set , set stores uniwure values
+// //method 1
+// // void printSubsets(vector<int> &arr, set<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
+// //     // Base case: when i reaches the end of arr
+// //     if (i == arr.size()) {
+// //         ans.insert(subset);
+// //         return;
+// //     }
+// //     // Include the current element in subset
+// //     subset.push_back(arr[i]);
+// //     printSubsets(arr, ans, i + 1,subset);
+// //     // Exclude the current element from subset (backtracking)
+// //     subset.pop_back();
+// //     printSubsets(arr, ans, i + 1,subset);
+// // }
 
-// //method 2
-// void printSubsets_(vector<int> &arr, vector<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
-//     // Base case: when i reaches the end of arr
-//     if (i == arr.size()) {
-//         ans.push_back(subset);
-//         return;
-//     }
-//     // Include the current element in subset
-//     subset.push_back(arr[i]);
-//     printSubsets_(arr, ans, i + 1, subset);
-//     // Exclude the current element from subset (backtracking)
-//     subset.pop_back();
-//     int idx = i + 1;
-//     while (idx < arr.size() && arr[idx] == arr[idx - 1]) idx++;
-//     printSubsets_(arr, ans, idx, subset);
-// }
+// // //method 2 for this
+// // void printSubsets_(vector<int> &arr, vector<vector<int>> &ans, int i,vector<int>&subset) {              // //O(2^n*n)
+// //     // Base case: when i reaches the end of arr
+// //     if (i == arr.size()) {
+// //         ans.push_back(subset);
+// //         return;
+// //     }
+// //     // Include the current element in subset
+// //     subset.push_back(arr[i]);
+// //     printSubsets_(arr, ans, i + 1, subset);
+// //     // Exclude the current element from subset (backtracking)
+// //     subset.pop_back();
+// //     int idx = i + 1;
+// //     while (idx < arr.size() && arr[idx] == arr[idx - 1]) idx++;
+// //     printSubsets_(arr, ans, idx, subset);
+// // }
 
 
 // int main() {
-//     vector<int> arr = {1, 2, 2}; // Input set
-//     vector<vector<int>> ans; // To store subsets
+//     vector<int> arr = {1, 2, 3}; // Input set
+//     vector<int> ans; // To store subsets
 //     vector<int>subset;
 //     // cout<<isSorted(arr,0);
-//     printSubsets_(arr, ans, 0,subset);
-//     for(auto &vec:ans){
-//         for(auto  val:vec){
-//             cout<<val<<" ";
-//         }
-//         cout<<endl;
+//     printSubsets(arr, ans, 0);
+//     for(int x:ans){
+//         cout<<x;
 //     }
 // }
 
@@ -246,14 +244,101 @@ using namespace std;
 
 
 //combination sum probelm
-void sum(vector<int>arr,int target,vector<int>ans,vector<vector<int>>finalAnswer){
+//this can be furtehr optimied .insted of computing sum of ans array again and again, we can minun arr[i] from target and check if it's equal to 0 or not;
+// void sum(vector<int> arr, int i, int target, vector<int>& ans, vector<vector<int>>& finalAnswer) {
+//     if (accumulate(ans.begin(), ans.end(), 0) == target) {
+//         finalAnswer.push_back(ans);
+//         return;
+//     }
+//     if (accumulate(ans.begin(), ans.end(), 0) > target) {
+//         return;
+//     }
+//     if (i == arr.size()) return;  
+
+//     // take arr[i]
+//     ans.push_back(arr[i]);
+//     sum(arr, i, target, ans, finalAnswer);  // stay at i
+//     ans.pop_back();
+
+//     // skip arr[i]
+//     sum(arr, i + 1, target, ans, finalAnswer);
+// }
+
+// int main() {
+//     vector<int> arr = {2, 3, 5};
+//     int target = 8;
+//     vector<int> ans;
+//     vector<vector<int>> finalAnswer;
+//     sum(arr, 0, target, ans, finalAnswer);
+
+//     for (auto& p : finalAnswer) {
+//         for (int x : p) {
+//             cout << x << " ";
+//         }
+//         cout << endl;
+//     }
+// }
+
+//Palindrome Partitioning Problem
+// bool isPalindrome(vector<char>ans){
+//     int n=ans.size();
+//     if(n==1){
+//         return true;
+//     }
+//     for(int i=0;i<n/2;i++){
+//         if(ans[i]!=ans[n-i-1]){
+//             return false;
+//             break;
+//         }
+//     }
+//     return true;
+// }
+// void printSubsets(string s,int i, vector<char> &ans, vector<vector<char>>&finalAnswer) {              // //O(2^n*n)
+//     // Base case: when i reaches the end of arr
+//     if (i == s.length()) {
+//         if(isPalindrome(ans)){
+//             finalAnswer.push_back(ans);
+//             return;
+//         }
+//         return;
+//     }
+//     // Include the current element in subset
+//     ans.push_back(s[i]);
+//     printSubsets(s, i+1,ans,finalAnswer);
+//     // Exclude the current element from subset (backtracking)
+//     ans.pop_back();
+//     printSubsets(s, i+1,ans,finalAnswer);
+// }
+
+// int main(){
+//     string s="aab";
+//     vector<char>ans;
+//     vector<vector<char>>finalAnswer;
+//     printSubsets(s,0,ans,finalAnswer);
+//     for(auto x:finalAnswer){
+//         for(char c:x){
+//             cout<<c;
+//         }
+//         cout<<" ";
+//     }
+// }
+
+
+//merge sort
+void mergeSort(vector<int>&arr){
+    int n=arr.size();
+    if(arr.size()==1){
+        return;
+    }
+    
+
 
 }
 
 int main(){
-    vector<int>arr={2,3,5};
-    int target=8;
-    vector<int>ans;
-    vector<vector<int>>finalAnswer;
-    sum(arr,target,ans,finalAnswer);
+    vector<int>arr={12,31,358,32,17};
+    mergeSort(arr);
+    for(int x:arr){
+        cout<<x;
+    }
 }
