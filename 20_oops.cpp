@@ -328,6 +328,3 @@ using namespace std;
 //     Square s1;
 //     s1.draw();
 // }
-
-
-

@@ -3,7 +3,6 @@
 using namespace std;
 
 
-
 class Node{
     public:
     int data;
@@ -101,8 +100,16 @@ int search(int val){
     }
     return -1;
 }
-void reverse(){
-
+void reverseList() {
+    Node* prev = NULL;
+    Node* curr = head;
+    while (curr != NULL) {
+        Node* nextt = curr->next; // store next
+        curr->next = prev;       // reverse pointer
+        prev = curr;             // move prev
+        curr = nextt;             // move curr
+    }
+    head = prev;
 }
 };
 
@@ -118,6 +125,7 @@ int main(){
     //ll.pop_back();
     //ll.insert(4,1);
     //cout<<ll.search(3);
+    ll.reverseList();
     ll.print();
     return 0;
 }
