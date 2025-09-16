@@ -324,21 +324,80 @@ using namespace std;
 // }
 
 
-//merge sort
-void mergeSort(vector<int>&arr){
-    int n=arr.size();
-    if(arr.size()==1){
-        return;
-    }
-    
+//MERGE SORT- divide till last and merge them in sorted order
+// void merge(vector<int>&arr,int start,int mid,int end){        //O(n)   
+//     vector<int>ans;
+//     int i=start;
+//     int j=mid+1;
+//     while(i<=mid && j<=end){
+//         if(arr[i]>arr[j]){
+//             ans.push_back(arr[j]);
+//             j++;
+//         }
+//         else{
+//             ans.push_back(arr[i]);
+//             i++;
+//         }
+//     }
+//     while(i<=mid){
+//         ans.push_back(arr[i++]);
+//     }
+//     while(j<=end){
+//         ans.push_back(arr[j++]);
+//     }
+//     for(int idx=0;idx<ans.size();idx++){
+//         arr[idx+start]=ans[idx];
+//     }
+// }
 
 
-}
+// //merge sort      O(nlogn)  space complexity-O(n), but quicsort has O(1) space complexity, though quick sort has time complxity O(n2) in worst case
+// void mergeSort(vector<int>&arr,int start,int end){             //O(logn)
+//     if(start<end){
+//         int mid=start+(end-start)/2;
+//         mergeSort(arr,start,mid);
+//         mergeSort(arr,mid+1,end);
+//         merge(arr,start,mid,end);
+//     }
+// }
 
-int main(){
-    vector<int>arr={12,31,358,32,17};
-    mergeSort(arr);
-    for(int x:arr){
-        cout<<x;
-    }
-}
+// int main(){
+//     vector<int>arr={12,31,35,32,17};
+//     mergeSort(arr,0,arr.size()-1);
+//         for(int x:arr){
+//         cout<<x<<" ";
+//     }
+// }
+
+
+//Quick Sort--choose a pivot point(last element) and place smaller element to left of pivot and larger to right of pivot . After 1 iteration pivot is placed on it's right position. Recursively apply this algo on right and left of pivot
+// int partition(vector<int>&arr,int start,int end){            
+//     int pivot=end;
+//     int idx=start-1;
+//     for(int i=start;i<end;i++){
+//         if(arr[i]<=arr[pivot]){
+//             idx++;
+//             swap(arr[i],arr[idx]);
+//         }
+//     }
+//     idx++;
+//     swap(arr[end],arr[idx]);
+//     return idx;
+// }
+
+// void quickSort(vector<int>&arr,int start,int end){              //O(nlogn)
+//     if(start<end){
+//     int pivot=partition(arr,start,end);
+//     quickSort(arr,start,pivot-1);
+//     quickSort(arr,pivot+1,end);
+//     }
+// }
+
+// int main(){
+//     vector<int>arr={5,2,6,4,1,3,-9};
+//     int n=arr.size();
+//     quickSort(arr,0,n-1);
+//     for(int x:arr){
+//         cout<<x<<" ";
+//     }
+// }

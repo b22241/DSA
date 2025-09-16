@@ -4,6 +4,8 @@ using namespace std;
 
 //O(nlogn)
 //O(n)-space complexity
+//MERGE SORT- divide till last and merge them in sorted order
+// but quicsort has O(1) space complexity, though quick sort has time complxity O(n2) in worst case
 void merge(vector<int> &arr, int st, int mid, int end) {
     vector<int> temp;
     int i = st, j = mid + 1;

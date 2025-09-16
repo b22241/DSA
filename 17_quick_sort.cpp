@@ -8,6 +8,7 @@ using namespace std;
 //O(nlogn)->for average time complexity
 //O(n2)->for worst case
 //O(1)--space complxity
+// Quick Sort--choose a pivot point(last element) and place smaller element to left of pivot and larger to right of pivot . After 1 iteration pivot is placed on it's right position. Recursively apply this algo on right and left of pivot         
 
 int partition(vector<int> &arr, int st, int end){
     int idx=st-1;
