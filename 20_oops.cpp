@@ -1,8 +1,48 @@
-#include<iostream>
-#include<string>
+#include <bits/stdc++.h>
 using namespace std;
 
-//Incapsulation & Abstraction
+//object oriented programming(OOPS)
+//converting real life scenerios in codeing language
+//objects are entitites in real world ..eg->pen,laptop,book
+//class is like a blueprint of these entitis ..eg->how car looks like, class of students, 
+
+// class Teacher{
+//     //properties /attributes
+// private:
+//     double salary;   
+    
+//     public:
+//     Teacher(){    //non parameterised constructor
+//         dept="cse";
+//     }
+//     public:
+//     string name;
+//     string dept;
+//     string subject;
+
+//     //methods/member functions
+//     void changeDept(string newDept){
+//         dept=newDept;
+//     }
+    
+//     //setter
+//     void setSalary(double s){
+//         salary=s;
+//     }
+//     //getter
+//     double getSalary(){
+//         return salary;
+//     }
+// };
+
+// int main(){
+//     Teacher t1;
+//     t1.name="ram";
+//     t1.subject="c++";
+//     cout<<t1.dept;
+// }
+
+
 // class Teacher{
 //     private:
 //     double salary;
@@ -20,7 +60,7 @@ using namespace std;
 //         subject=sub;
 //         salary=s;
 //     }
-//     //Custom Copy constructor
+//     //Custom Copy constructor     special constructor used to copy properties of one object into another
 //     Teacher(Teacher &orgObj) {
 //         cout << "I am custom copy constructor...\n";
 //         this->name = orgObj.name;
@@ -28,8 +68,6 @@ using namespace std;
 //         this->subject = orgObj.subject;
 //         this->salary = orgObj.salary;
 //     }
-
-
 //     string name;
 //     string dept;
 //     string subject;
@@ -69,9 +107,10 @@ using namespace std;
 //         this->cgpaPtr= student.cgpaPtr;
 //     }
 
-//     //destructor
+//     //destructor  used to deallocate the memory,it's automatically created 
 //     ~Student(){
 //         cout<<"I delete everything";
+//         delete cgpaPtr;
 //     }
 //     void getInfo(){
 //         cout<<"name: "<<name<<endl;
@@ -80,27 +119,26 @@ using namespace std;
 
 // };
 // int main(){
-//     //non-parameteried constructor call
-//     // Teacher t1;
-//     // t1.name="Ram";
-//     // t1.dept="cc";
-//     // t1.subject="VLSI";
+    //non-parameteried constructor call
+    // Teacher t1;
+    // t1.name="Ram";
+    // t1.dept="cc";
+    // t1.subject="VLSI";
 
-//     // //parameteried constructor call
-//     // Teacher t1("shyam","electrical","nanotechnology",1000);
-//     // Teacher t2(t1);
-//     // //t1.getInfo();
-//     // t2.getInfo(); ///use of copy constructor//it's deafulat but we can make custom as well
+    //parameteried constructor call
+    // Teacher t1("shyam","electrical","nanotechnology",1000);
+    // Teacher t2(t1);  //custom copy constructor
+    // //t1.getInfo();
+    // t2.getInfo(); ///use of copy constructor//it's deafulat but we can make custom as well
    
 
-//     Student s1("anand sanva",8.1);
-//     //Student s2(s1);//default copy constructor
-//     cout<<"Student 1"<<endl;
-//     //s1.getInfo();
-//     Student s2(s1);//customised copy constructor
-//     *(s2.cgpaPtr)=9.2;
-//     cout<<"Student 1"<<endl;
-//     s2.getInfo();
+    // Student s1("anand sanva",8.1);
+    // Student s2(s1);//default copy constructor
+    // cout<<"Student 1"<<endl;
+    // s1.getInfo();
+    // // Student s2(s1);//customised copy constructor
+    // *(s2.cgpaPtr)=9.2;    //i have changed cg of s2 but cg of s1 is also getting changed, this is because, shallow copy of s2 is getting created out of s1.To avoid this we can create deep copy
+    // s1.getInfo();
 // }
 
 
@@ -113,9 +151,7 @@ using namespace std;
 //     Person(){
        
 //     }
-
 // };
-
 // class Student :public Person{
 //     //student has attributes name,age,roll number. so we don't need to define name and age again, we will inherit name and age from Person class(in this case this is parent and student is child)
 //     public:
@@ -133,10 +169,11 @@ using namespace std;
 //     s1.age=90;
 //     s1.roll_number="B22241";
 //     s1.getInfo(); //even though student class has no paraments like name and age, but it's taking info from person class;
+//     //constructor of parent class is called first and then child class,opposite is the case for deconstructor
 // }
 
 
-//multilevel inheritence
+//multilevel inheritence  when 1 class inherit properties form successive partents
 // class Person{
 //     public:
 //     string name;
@@ -168,7 +205,7 @@ using namespace std;
 // }
 
 
-//Multiple Inheritence
+//Multiple Inheritence   when a child inherits properties from multiple(2 or more) parents
 // class Student{
 //     public:
 //     string name;
@@ -217,7 +254,7 @@ using namespace std;
 // };
 
 // int main() {
-//     //Student s1();  //if i write just s1 then non parameterised constuctor will run 
+//     // Student s1();  //if i write just s1 then non parameterised constuctor will run 
 //     Student s1("tony stark");  //if i write name as well then parameterised will run, this phenomena is knows as constructor overloading
 //     return 0;
 // }
@@ -235,27 +272,62 @@ using namespace std;
 // };
 // int main() {
 //     Print p1;
-//     p1.show(101);  // compiler automatically detects which show to call based on type of input
+//     p1.show(4435);
+//     p1.show('abcdsafer');  // compiler automatically detects which show to call based on type of input
 //     return 0;
 // }
 
 
                                                                                                   //Run Time polymorphism
 //eg.Function Overriding
-class Parent {
-public:
-    void getInfo() {
-        cout << "parent class\n";
-    }
-};
-class Child : public Parent {
-public:
-    void getInfo() {
-        cout << "child class\n";
-    }
-};
-int main() {
-    Child c1;
-    c1.getInfo();  // Output should have been parent class, but output is child class. So child class is overridding parent class
-    return 0;
-}
+// class Parent {
+// public:
+//     void getInfo() {
+//         cout << "parent class\n";
+//     }
+// };
+// class Child : public Parent {
+// public:
+//     void getInfo() {
+//         cout << "child class\n";
+//     }
+// };
+// int main() {
+//     Child c1;
+//     c1.getInfo();  // Output should have been parent class, but output is child class. So child class is overridding parent class
+//     return 0;
+// }
+
+
+//                                                    ------------------------Abstract Classes------------------
+// Abstract classes are used to provide a base class from which other classes can be derived.
+// They cannot be instantiated and are meant to be inherited.
+// Abstract classes are typically used to define an interface for derived classes.
+
+// class shape{       //this class is there only to show blueprint of other classes, like what functions will be there
+//     virtual void draw()=0;  //pure virtual function
+// };
+
+// class Circle:public shape{
+//     public:
+//     void draw(){
+//         cout<<"drawing a cirlce\n";
+//     }
+// };
+
+// class Square:public shape{
+//     public:
+//     void draw(){    //if i don't define draw function here, then error will be like"you haven't defind draw fucntion.
+//         cout<<"drawing a square";
+//     }
+// };
+
+// int main(){
+//     Circle c1;
+//     c1.draw();
+//     Square s1;
+//     s1.draw();
+// }
+
+
+
