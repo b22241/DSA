@@ -30,7 +30,6 @@ class CircularList{
         }
         cout <<head->data;  // Add newline for better output
     }
-
     void push_front(int val){
         Node* newNode = new Node(val);
         if(head == NULL){
@@ -43,7 +42,6 @@ class CircularList{
             tail->next=newNode;
         }
     }
-   
     void push_back(int val){
         Node* newNode = new Node(val);
         if(head == NULL){
@@ -56,7 +54,6 @@ class CircularList{
             tail=newNode;
         }
     }
-
     void pop_front(){
         if(head==NULL) return;
         else if(head==tail){
@@ -70,9 +67,7 @@ class CircularList{
             temp->next=NULL;
             delete temp;        
         }
-        
     }
-
     void pop_back(){
         if(head==NULL) return;
         else if(head==tail){
@@ -89,7 +84,6 @@ class CircularList{
            tail->next=head;
            temp->next=NULL;
            delete temp;
-
         }
         }
 };
@@ -101,8 +95,10 @@ int main(){
     ll.push_back(1);
     ll.push_back(2);
     ll.push_back(3);
+    ll.push_back(4);
+    ll.push_back(5);
     //ll.pop_front();
-    ll.pop_back();
+    // ll.pop_back();
 
     ll.print();
     return 0;
