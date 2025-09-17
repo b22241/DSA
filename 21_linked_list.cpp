@@ -1,7 +1,5 @@
-#include<algorithm>
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
-
 
 class Node{
     public:
@@ -16,6 +14,7 @@ class Node{
 };
 
 class List{
+    public:
     Node* head;
     Node* tail;
 
@@ -111,21 +110,52 @@ void reverseList() {
     }
     head = prev;
 }
+void detectCycle() {            //detect cycle from linked list
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) {
+            // Reset slow to head
+            slow = head;
+
+            // Move both one step at a time
+            while (slow != fast) {
+                slow = slow->next;
+                fast = fast->next;
+            }
+
+            cout << "Cycle starts at node with value: " << slow->data << endl;
+            return;
+        }
+    }
+    cout << "No cycle is present" << endl;
+}
 };
 
 
-int main(){
-    List ll;
-    ll.push_back(1);
-    ll.push_back(2);
-    ll.push_back(3);
-    ll.push_back(4);
-    //ll.push_front(4);
-    //ll.pop_front();
-    //ll.pop_back();
-    //ll.insert(4,1);
-    //cout<<ll.search(3);
-    ll.reverseList();
-    ll.print();
-    return 0;
-}
+// int main(){
+//     List ll;
+//     ll.push_back(1);
+//     ll.push_back(2);
+//     ll.push_back(3);
+//     ll.push_back(4);
+//     //ll.push_front(4);
+//     //ll.pop_front();
+//     //ll.pop_back();
+//     //ll.insert(4,1);
+//     //cout<<ll.search(3);
+//     ll.reverseList();
+//     ll.print();
+//     ll.head->next->next->next->next->next = ll.head->next;
+    //  ll.detectCycle();
+    // ll.print();
+// }
+
+
+
+
+
+
