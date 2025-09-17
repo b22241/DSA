@@ -78,6 +78,43 @@ class DoublyList{
         delete tail;
         tail=temp;
     }
+    void insert(int val,int position){
+    if(position<0) return;
+    if (position==0) return push_front(val);
+    else;
+    Node* temp=head;
+    Node*newNode=new Node(val);
+    for(int i=0;i<position-1;i++){
+        temp=temp->next;
+    }
+    newNode->next=temp->next;
+    temp->next=newNode;
+}
+    int search(int val){
+    Node* temp=head;
+    int idx=0;
+    while(temp!=NULL){
+        if(temp->data==val){
+            return idx;
+        }
+        temp=temp->next;
+        idx++;
+    }
+    return -1;
+}
+    void reverse(int k){
+    Node* temp1=head;
+    Node* temp2=head;
+    Node* temp3=head;
+    while(int i=0<k){
+        temp2=temp2->next;
+    }
+    temp3->data=temp2->data;
+    temp2->data=temp1->data;
+    temp1->data=temp3->data;
+
+
+}
 };
 
 int main(){
@@ -89,7 +126,8 @@ int main(){
     ll.push_front(5);
     // ll.push_back(0);
     //ll.pop_front();
-    ll.pop_back();
-    ll.print();
+    // ll.pop_back();
+    // cout<<ll.search(3);
+    // ll.print();
     return 0;
 }
