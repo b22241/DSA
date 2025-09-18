@@ -69,14 +69,22 @@ using namespace std;
 // vector<int> next_greater_element(vector<int> v) {
 //     vector<int> ans(v.size(), -1); 
 //     stack<int> s;
-//     for(int i = v.size() - 1; i >= 0; i--) {
-//         while(!s.empty() && s.top() <= v[i]) {
-//             s.pop();
+//     for(int i=v.size()-1;i>=0;i--){
+//         if(s.empty()){
+//             ans[i]=-1;
+//             s.push(v[i]);
 //         }
-//         if(!s.empty()) {
-//             ans[i] = s.top();
+//         if(s.top()>v[i]){
+//             ans[i]=s.top();
+//             s.push(v[i]);
 //         }
-//         s.push(v[i]);
+//         else{
+//             while(!s.empty() && s.top()>v[i]){
+//                 s.pop();
+//             }                                  
+//             ans[i]=-1;
+//             s.push(v[i]);
+//         }
 //     }
 //     return ans;
 // }
@@ -120,7 +128,7 @@ using namespace std;
 
 
 
-// int min_rectangle_area(vector<int> v) {
+// int min_rectangle_area(vector<int> v) {          //O(n2)
 //     int ans = 0;
 //     for (int i = 0; i < v.size(); i++) {
 //         int area = 0;
@@ -137,13 +145,83 @@ using namespace std;
 //         area = v[i] * (j - k + 1);
 //         ans = max(ans, area);
 //     }
-
 //     return ans;
 // }
 
-// int main() {
-//     vector<int> v = {2, 1, 6, 6, 2, 4};
-//     cout << min_rectangle_area(v);
+// vector<int> rightSmaller(vector<int> v) {
+//     stack<int> s;
+//     vector<int> right(v.size(), v.size()); // default = n (no smaller element to right)
+//     for (int i = v.size() - 1; i >= 0; i--) {
+//         while (!s.empty() && v[s.top()] >= v[i]) {
+//             s.pop();
+//         }
+//         if (!s.empty()) {
+//             right[i] = s.top();
+//         }
+//         s.push(i);
+//     }
+//     return right;
 // }
 
+// vector<int> leftSmaller(vector<int> v) {
+//     stack<int> s;
+//     vector<int> left(v.size(), -1); // default = -1 (no smaller element to left)
+//     for (int i = 0; i < v.size(); i++) {
+//         while (!s.empty() && v[s.top()] >= v[i]) {
+//             s.pop();
+//         }
+//         if (!s.empty()) {
+//             left[i] = s.top();
+//         }
+//         s.push(i);
+//     }
+//     return left;
+// }
+
+// int maxRectangleArea(vector<int> v) {
+//     vector<int> left = leftSmaller(v);
+//     vector<int> right = rightSmaller(v);
+
+//     int maxArea = 0;
+//     for (int i = 0; i < v.size(); i++) {
+//         int width = right[i] - left[i] - 1;  // width between smaller bars
+//         int area = v[i] * width;
+//         maxArea = max(maxArea, area);
+//     }
+//     return maxArea;
+// }
+
+// int main() {
+//     vector<int> v = {2, 1, 5, 6, 2, 3};
+//     cout << "Maximum Rectangle Area = " << maxRectangleArea(v) << endl;
+//     return 0;
+// }
+
+
+//next greater element ||
+// vector<int> next(vector<int> v) {
+//     int n = v.size();
+//     vector<int> ans(n, -1);
+//     stack<int> s;
+
+//     for (int i = 2 * n - 1; i >= 0; i--) {
+//         int idx = i % n;
+//         while (!s.empty() && s.top() <= v[idx]) {
+//             s.pop();
+//         }
+//         if (!s.empty()) {
+//             ans[idx] = s.top();
+//         }
+//         s.push(v[idx]);
+//     }
+//     return ans;
+// }
+
+// int main(){
+//     vector<int>v={3,6,5,4,2};
+//     vector<int>ans=next(v);
+//     for(int x:ans){
+//         cout<<x<<" ";
+//     }
+// }
 
