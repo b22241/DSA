@@ -92,14 +92,17 @@ using namespace std;
 
 
 // Queue   //FIFO  allfunctions are same as stack
-// int main(){
+// int main() {
 //     queue<int> q;
-//     q.push(1);
-//     //     q.push(4);
-//     //     q.push(432);
-//     //     q.push(12);
-//     //     q.push(9);
-//     cout<<q.front(); 
+//     q.push(10);
+//     q.push(20);
+//     q.push(30);
+//     cout << "Front: " << q.front() << endl;  // 10
+//     cout << "Back: " << q.back() << endl;    // 30
+//     cout << "Size: " << q.size() << endl;    // 3
+//     q.pop();  // remove 10
+//     cout << "After pop, front: " << q.front() << endl; // 20
+//     cout << "Is empty? " << (q.empty() ? "Yes" : "No") << endl;
 // }
 
 

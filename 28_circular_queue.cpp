@@ -1,10 +1,12 @@
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <numeric>
-#include <queue>
-#include <deque>
+#include <bits/stdc++.h>
 using namespace std;
+
+
+// int* arr; 
+// arr = new int[5];  // dynamically allocate an array of 5 ints
+// arr[0] = 1;
+// arr[1] = 2;
+// cout << arr[1]; // prints 2
 
 class CircularQueue{
     int* arr;
@@ -66,5 +68,10 @@ int main(){
     q.push(1);
     q.push(2);
    
-    //q.print();
+    q.print();
 }
+
+
+
+
+
