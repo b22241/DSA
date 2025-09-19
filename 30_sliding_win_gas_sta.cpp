@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//O(n2)
+//O(n2)                           //-------------------------------sliding window---------------------------
 // vector<int> max_SlidingWindow(vector<int>& nums, int k) {
 //         int n=nums.size();
 //         vector<int>ans;
@@ -16,40 +16,41 @@ using namespace std;
 //     }
 
 // //O(n)--using hashmap
-// vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-//     deque<int> dq; // will store indices
-//     vector<int> res;
-
-//     // Process first k elements
-//     for (int i = 0; i < k; i++) {
-//         while (!dq.empty() && nums[dq.back()] <= nums[i]) {
-//             dq.pop_back();
+// void slidingWindow(vector<int>window,int k){
+//         deque<int> q;
+//         int n = window.size();
+//         vector<int> ans;
+//         for (int i = 0; i < k; i++) {
+//             while (!q.empty() && window[i] >= window[q.back()]) {
+//                 q.pop_back();
+//             }
+//             q.push_back(i); // store index
 //         }
-//         dq.push_back(i);
+//         ans.push_back(window[q.front()]);
+//         // process rest
+//         for (int i = k; i < n; i++) {
+//             // remove out of window index
+//             while (!q.empty() && q.front() <= i - k) {
+//                 q.pop_front();
+//             }
+//             // maintain decreasing order
+//             while (!q.empty() && window[i] >= window[q.back()]) {
+//                 q.pop_back();
+//             }
+//             q.push_back(i);
+//             // front is max
+//             ans.push_back(window[q.front()]);
+//         }
+//     for(int val:ans){
+//         cout<<val<<" ";
 //     }
+// }
 
-//     // Process the rest of the array
-//     for (int i = k; i < nums.size(); i++) {
-//         // The front of the deque is the largest element's index for the previous window
-//         res.push_back(nums[dq.front()]);
 
-//         // Remove elements not part of current window
-//         while (!dq.empty() && dq.front() <= i - k) {
-//             dq.pop_front();
-//         }
-
-//         // Remove all smaller elements as they are useless
-//         while (!dq.empty() && nums[dq.back()] <= nums[i]) {
-//             dq.pop_back();
-//         }
-
-//         dq.push_back(i);
-//     }
-
-//     // Add the maximum for the last window
-//     res.push_back(nums[dq.front()]);
-
-//     return res;
+// int main(){
+//     vector<int>window={1,3,-1,-3,5,3,6,7};
+//     int k=3;
+//    slidingWindow(window,k);
 // }
 
 // int main() {
@@ -60,6 +61,10 @@ using namespace std;
 //     for (int x : res) cout << x << " ";
 // }
 
+
+
+
+                      //--------------gas station------------------ (greedy search)
 // int gas_station(vector<int> gas, vector<int> cost){
 //     int n = gas.size();
 //     int previous_fuel = 0;
@@ -91,13 +96,3 @@ using namespace std;
 //     return 0;
 // }
 
-vector<int>slidingWindow(vector<int>window){
-    deque<int>q;
-    for(int i=0;i<window.size();i++){
-        while(!q.empty() && window[i]>q.front()){
-        q.pop_front();
-    }
-    }
-
-
-}
