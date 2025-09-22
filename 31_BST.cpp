@@ -111,6 +111,58 @@ bool isSameTree(Node* p, Node* q) {
         return left && right;
 }
 
+//diameter of a tree
+int ans = INT_MIN;
+int diameter(Node* root) {
+        if(!root) return 0;
+        int left = diameter(root->left);
+        int right = diameter(root->right);
+        ans = max(left+right, ans);
+        return max(left, right) + 1;
+}
+
+//top view of tree
+void topView(Node* root) {
+    if (root == NULL) return; 
+    map<int,int>m;
+    queue<pair<Node*,int>> q;
+    q.push({root,0});
+
+    while (!q.empty()) {
+        Node* curr = q.front().first;
+        int currHD = q.front().second;
+        q.pop();
+        if(m.find(currHD)==m.end()){           //it's time complexity is O(logn), map stores values in sorted order
+            m[currHD]=curr->data;;
+        }
+        if (curr->left) q.push({curr->left,currHD-1});
+        if (curr->right) q.push({curr->right,currHD+1});
+    }
+    for(auto it:m){
+        cout<<it.second<<" ";
+    }
+}
+
+//kth level of tree
+void kthlevel(Node* root,int k) {
+    if(root==NULL){
+        return;
+    }
+    if(k==1){
+    cout<<root->data<<" ";
+    return;
+  }
+  kthlevel(root->left,k-1);
+  kthlevel(root->right,k-1);
+}
+
+//transfrom tree to sum tree
+int sumTree(Node* root){
+    if(root==NULL) return 0;
+
+    root->data=root->data+sumTree(root->left)+sumTree(root->right);
+    return root->data;
+}
 
 int main(){
     vector<int> pre = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
@@ -125,6 +177,12 @@ int main(){
     // cout<<nodes(root);
     // cout<<sum(root);
     // cout<<isSameTree(root,root1);
+    // cout<<diameter(root);
+    // topView(root);
+    // int k=3;
+    // kthlevel(root,3);
+    // sumTree(root);
+    // cout<<root->right->data;
     
 }
 
