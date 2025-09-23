@@ -164,6 +164,51 @@ int sumTree(Node* root){
     return root->data;
 }
 
+Node* inorderPredecor(Node* root){             //IP is the right most element in left subtree of that element
+    if(root==NULL) return root;
+    Node* IP=root->left;
+    while(IP->right!=NULL && IP->right!=root ){
+        IP=IP->right;
+    }
+    return IP;
+}
+
+//Morris Inorder Traversal          --left,root,right
+void morrisInorder(Node* root){
+    Node* curr=root;
+    while(curr){
+    if(curr->left==NULL){
+        cout<<curr->data;
+        curr=curr->right;
+    }
+    else{
+        Node* IP=inorderPredecor(curr);
+        if(IP->right==NULL){
+            IP->right=curr;
+            curr=curr->left;
+        }
+        else{
+            IP->right==NULL;
+            cout<<curr->data;
+            curr=curr->right;
+        }
+    }
+}
+}
+
+//flatten binary tree to linked list
+Node* nextRight=NULL;
+void flatten(Node* root){
+    if(root==NULL) return ;
+    
+    flatten(root->right);
+    flatten(root->left);
+
+    root->left=NULL;
+    root->right=nextRight;
+    nextRight=root;
+}
+
 int main(){
     vector<int> pre = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
     vector<int> pre1 = {1, 2, 6,-1,-1,7,-1,-1,3,4,-1,-1,5,-1,-1};
@@ -183,6 +228,9 @@ int main(){
     // kthlevel(root,3);
     // sumTree(root);
     // cout<<root->right->data;
+    // morrisInorder(root);
+    // flatten(root);
+
     
 }
 
