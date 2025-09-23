@@ -22,7 +22,23 @@ class Graph{
             cout<<endl;
         }
     }
-    
+    void cycle_BFS(){        
+        queue<int>q;
+        q.push(0);
+        vector<bool>visited(V,false);
+        visited[0]=true;
+        while(!q.empty()){
+            int u=q.front();
+            q.pop();
+            int i=0;
+            for(int v:l[u]){
+                if(!visited[v]){
+                    visited[v]=true;
+                    q.push(v);
+                }
+            }
+        }
+    }
 
 };
 
@@ -35,4 +51,5 @@ int main(){
     g.addEdge(1,2);;
     g.addEdge(3,4);
     // g.printGraph();
+    g.cycle_BFS();
 }
