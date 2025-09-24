@@ -22,22 +22,26 @@ class Graph{
             cout<<endl;
         }
     }
-    void cycle_BFS(){        
-        queue<int>q;
-        q.push(0);
+    bool cycle_BFS(){        
+        queue<pair<int,int>>q;
+        q.push({0,-1});
         vector<bool>visited(V,false);
         visited[0]=true;
         while(!q.empty()){
-            int u=q.front();
+            int u=q.front().first;
+            int uParent=q.front().second;
             q.pop();
-            int i=0;
             for(int v:l[u]){
                 if(!visited[v]){
                     visited[v]=true;
-                    q.push(v);
+                    q.push({v,u});
+                }
+                else if(uParent!=v){         //condition for cycle
+                    return true;
                 }
             }
         }
+        return false;
     }
 
 };
@@ -51,5 +55,5 @@ int main(){
     g.addEdge(1,2);;
     g.addEdge(3,4);
     // g.printGraph();
-    g.cycle_BFS();
+    cout<<g.cycle_BFS();
 }
