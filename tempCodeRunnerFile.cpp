@@ -1,2 +1,2 @@
 
-    if(curr->right){
+    //     cout<<i<<" ";

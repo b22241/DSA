@@ -615,7 +615,7 @@ int main() {
 //     }
 // }
 
-// //book allocation problem
+//book allocation problem
 // bool valid_book(vector<int>& arr, int n, int m, int maxAllowedPages) {
 //     int students = 1, pages = 0;
 //     for (int i = 0; i < n; i++) {
@@ -779,10 +779,10 @@ int main() {
 //     // int end=arr.size()-1;
 //     // singleNon_duplicate_element(arr,st,end);
 
-//     // vector<int> books = {10, 20, 30, 40};
-//     // int n = books.size();
-//     // int m = 2;  // Number of students
-//     // allocateBooks(books, n, m);
+    // vector<int> books = {10, 20, 30, 40};
+    // int n = books.size();
+    // int m = 2;  // Number of students
+    // allocateBooks(books, n, m);
 
 //     // vector<int> arr = {40,30,10,20};
 //     // int n = arr.size();

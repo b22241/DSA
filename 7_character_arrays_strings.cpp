@@ -1,16 +1,11 @@
-#include <iostream>
-#include <vector>
-#include <array>
-#include <string>
-#include <cctype>  // for tolower()
+#include<bits/stdc++.h>
 using namespace std;
-#include <algorithm> // Add this include for std::reverse
 
 
 //character arrays  
 // int main(){
-//     char str[]={"hello"};
-//     cout<<strlet(str);   5 
+//     char str[100]="";
+//     cout<<strlen(str);   
 //     cin.getline(str,100,"$");
 //     for(char ch:str){
 //         cout<<ch<<" ";
@@ -105,14 +100,16 @@ using namespace std;
 //     return idx;  // return new length
 // }
 
-int main() {
-    string s = "daabcbaabcbc";
-    string part = "abc bb";    
-    // reverseString(part);
-    // int newLength = stringCompression(s);
-    // cout << "Compressed: ";
-    // for (int i = 0; i < newLength; i++) {
-    //     cout << s[i];
-    // }
-    // cout << removeOccurrences(s, part) << endl;  // Expected output: "dab"
-}
+// int main() {
+//     string s = "daabcbaabcbc";
+//     string part = "abc bb";    
+//     // reverseString(part);
+//     // int newLength = stringCompression(s);
+//     // cout << "Compressed: ";
+//     // for (int i = 0; i < newLength; i++) {
+//     //     cout << s[i];
+//     // }
+//     // cout << removeOccurrences(s, part) << endl;  // Expected output: "dab"
+//     int a='a';
+//     cout<<a;
+// }
