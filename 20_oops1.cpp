@@ -5,9 +5,12 @@ using namespace std;
 //converting real life scenerios in codeing language
 //objects are entitites in real world ..eg->pen,laptop,book
 //class is like a blueprint of these entitis ..eg->how car looks like, class of students, 
+// Padding---	Extra unused bytes added for alignment	char a; int b; → 8 bytes instead of 5
+// Greedy Alignment	-- Compiler aligns members to their natural boundaries	Largest member alignment decides total struct size
+// Why?	To make CPU memory access faster	Aligned reads/writes are efficient
 
 // class Teacher{
-//     //properties /attributes
+//     //properties /attributes/data members
 // private:
 //     double salary;   
     
@@ -20,16 +23,16 @@ using namespace std;
 //     string dept;
 //     string subject;
 
-//     //methods/member functions
+//     //methods/member functions/behaviours
 //     void changeDept(string newDept){
 //         dept=newDept;
 //     }
     
-//     //setter
+//     //setter function
 //     void setSalary(double s){
 //         salary=s;
 //     }
-//     //getter
+//     //getter function, with the help of getter and setter functuon properties of a object can be accessed, even though it is private
 //     double getSalary(){
 //         return salary;
 //     }
@@ -48,6 +51,9 @@ using namespace std;
 //     double salary;
 
 //     public:
+//     string name;
+//     string dept;
+//     string subject;
 //     //non-parameteried constructor 
 //     Teacher(){
 //         dept="computer science";
@@ -68,9 +74,6 @@ using namespace std;
 //         this->subject = orgObj.subject;
 //         this->salary = orgObj.salary;
 //     }
-//     string name;
-//     string dept;
-//     string subject;
 
 //     //setter
 //     void changeDept(string newDept){
@@ -103,7 +106,7 @@ using namespace std;
 //     //copy constructor
 //     Student(Student &student) {
 //         cout << "I am custom copy constructor...\n";
-//         this->name = student.name;
+//         this->name = "ram";
 //         this->cgpaPtr= student.cgpaPtr;
 //     }
 
@@ -119,13 +122,13 @@ using namespace std;
 
 // };
 // int main(){
-    //non-parameteried constructor call
+    // non-parameteried constructor call
     // Teacher t1;
     // t1.name="Ram";
     // t1.dept="cc";
     // t1.subject="VLSI";
 
-    //parameteried constructor call
+    // // parameteried constructor call
     // Teacher t1("shyam","electrical","nanotechnology",1000);
     // Teacher t2(t1);  //custom copy constructor
     // //t1.getInfo();
@@ -136,41 +139,42 @@ using namespace std;
     // Student s2(s1);//default copy constructor
     // cout<<"Student 1"<<endl;
     // s1.getInfo();
-    // // Student s2(s1);//customised copy constructor
+    // Student s2(s1);//customised copy constructor
+    // s2.getInfo();
     // *(s2.cgpaPtr)=9.2;    //i have changed cg of s2 but cg of s1 is also getting changed, this is because, shallow copy of s2 is getting created out of s1.To avoid this we can create deep copy
     // s1.getInfo();
 // }
 
 
 //single level Inheritence
-// class Person{
-//     public:
-//     string name;
-//     int age;
-//     //parameterised constructor
-//     Person(){
+class Person{
+    public:
+    string name;
+    int age;
+    //parameterised constructor
+    Person(){
        
-//     }
-// };
-// class Student :public Person{
-//     //student has attributes name,age,roll number. so we don't need to define name and age again, we will inherit name and age from Person class(in this case this is parent and student is child)
-//     public:
-//     string roll_number;
-//     void getInfo(){
-//         cout<<"name: "<<name<<endl;
-//         cout<<"roll number: "<<roll_number<<endl;
-//         cout<<"age: "<<age<<endl;
-//     }
-// };
+    }
+};
+class Student :public Person{       
+    //student has attributes name,age,roll_number. so we don't need to define name and age again, we will inherit name and age from Person class(in this case this is parent and student is child)
+    public:
+    string roll_number;
+    void getInfo(){
+        cout<<"name: "<<this->name<<endl;
+        cout<<"roll number: "<<roll_number<<endl;
+        cout<<"age: "<<age<<endl;
+    }
+};
 
-// int main(){
-//     Student s1;
-//     s1.name="rahul";
-//     s1.age=90;
-//     s1.roll_number="B22241";
-//     s1.getInfo(); //even though student class has no paraments like name and age, but it's taking info from person class;
-//     //constructor of parent class is called first and then child class,opposite is the case for deconstructor
-// }
+int main(){
+    Student s1;
+    s1.name="rahul";
+    s1.age=90;
+    s1.roll_number="B22241";
+    s1.getInfo(); //even though student class has no paraments like name and age, but it's taking info from person class;
+    //constructor of parent class is called first and then child class,opposite is the case for deconstructor
+}
 
 
 //multilevel inheritence  when 1 class inherit properties form successive partents
