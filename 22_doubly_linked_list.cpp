@@ -1,134 +1,153 @@
-#include<algorithm>
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-
-
-class Node{
-    public:
+class Node {
+public:
     int data;
     Node* next;
+    Node* prev;
 
-    Node(int val){
-        data=val;
-        next=NULL;
+    Node(int val) {
+        data = val;
+        next = prev = nullptr;
     }
-
 };
 
-class List{
+class DoublyList {
     Node* head;
     Node* tail;
 
 public:
-List(){
-    head=tail=NULL;
-}  
-void print(){
-    Node* temp=head;
-    while(temp!=NULL){
-        cout<<temp->data<<"-";
-        temp = temp->next;
+    DoublyList() {
+        head = tail = nullptr;
     }
-    cout<<"null";
 
-}
-void push_front(int val){
-    Node*newNode=new Node(val);
-    if(head==NULL){
-        head=tail=newNode;
-        return;
+    void print() {
+        Node* temp = head;
+        while (temp != nullptr) {
+            cout << temp->data << "-";
+            temp = temp->next;
+        }
+        cout << "null\n";
     }
-    else{
-        newNode->next=head;
-        head=newNode;
+
+    void push_front(int val) {
+        Node* newNode = new Node(val);
+        if (head == nullptr) {
+            head = tail = newNode;
+            return;
+        }
+        newNode->next = head;
+        head->prev = newNode;
+        head = newNode;
     }
-}
-void push_back(int val){
-    Node*newNode=new Node(val);
-    if(head==NULL){
-        head=tail=newNode;
-        return;
-    }
-    else {
+
+    void push_back(int val) {
+        Node* newNode = new Node(val);
+        if (head == nullptr) {
+            head = tail = newNode;
+            return;
+        }
         tail->next = newNode;
+        newNode->prev = tail;
         tail = newNode;
     }
-}
-void pop_front(){
-    if(head==NULL){
-        cout<<"your linkedlist is empyt\n";
-        return;
-    }
-    else;
-    head=head->next;
-}
-void pop_back(){
-    if(head==NULL){
-        cout<<"your linkedlist is empyt\n";
-        return;
-    }
-    else;
-    Node* temp=head;
-    while(temp->next!=tail){
-        temp=temp->next;
-    }
-    temp->next=NULL;
-    delete tail;
-    tail=temp;
-}
-void insert(int val,int position){
-    if(position<0) return;
-    if (position==0) return push_front(val);
-    else;
-    Node* temp=head;
-    Node*newNode=new Node(val);
-    for(int i=0;i<position-1;i++){
-        temp=temp->next;
-    }
-    newNode->next=temp->next;
-    temp->next=newNode;
-}
-int search(int val){
-    Node* temp=head;
-    int idx=0;
-    while(temp!=NULL){
-        if(temp->data==val){
-            return idx;
+
+    void pop_front() {
+        if (head == nullptr) {
+            cout << "Linked list is empty\n";
+            return;
         }
-        temp=temp->next;
-        idx++;
+        Node* temp = head;
+        head = head->next;
+        if (head) head->prev = nullptr;
+        else tail = nullptr; // list became empty
+        delete temp;
     }
-    return -1;
-}
-void reverse(int k){
-    Node* temp1=head;
-    Node* temp2=head;
-    Node* temp3=head;
-    while(int i=0<k){
-        temp2=temp2->next;
+
+    void pop_back() {
+        if (tail == nullptr) {
+            cout << "Linked list is empty\n";
+            return;
+        }
+        Node* temp = tail;
+        tail = tail->prev;
+        if (tail) tail->next = nullptr;
+        else head = nullptr; // list became empty
+        delete temp;
     }
-    temp3->data=temp2->data;
-    temp2->data=temp1->data;
-    temp1->data=temp3->data;
 
+    void insert(int val, int position) {
+        if (position < 0) return;
+        if (position == 0) return push_front(val);
 
-}
+        Node* temp = head;
+        for (int i = 0; i < position - 1 && temp != nullptr; i++) {
+            temp = temp->next;
+        }
+        if (temp == nullptr) return;
+
+        Node* newNode = new Node(val);
+        newNode->next = temp->next;
+        newNode->prev = temp;
+        if (temp->next) temp->next->prev = newNode;
+        temp->next = newNode;
+        if (temp == tail) tail = newNode;
+    }
+
+    int search(int val) {
+        Node* temp = head;
+        int idx = 0;
+        while (temp != nullptr) {
+            if (temp->data == val) return idx;
+            temp = temp->next;
+            idx++;
+        }
+        return -1;
+    }
+
+    void reverse() {
+        Node* temp = nullptr;
+        Node* current = head;
+
+        // swap next and prev for all nodes
+        while (current != nullptr) {
+            temp = current->prev;
+            current->prev = current->next;
+            current->next = temp;
+            current = current->prev; // move to next node in original list
+        }
+
+        // swap head and tail
+        if (temp != nullptr) head = temp->prev;
+    }
 };
 
+int main() {
+    DoublyList dll;
+    dll.push_back(1);
+    dll.push_back(2);
+    dll.push_back(3);
+    dll.push_back(4);
+    dll.push_back(5);
 
-int main(){
-    List ll;
-    ll.push_back(1);
-    ll.push_back(2);
-    ll.push_back(3);
-    ll.push_back(4);
-    ll.push_back(5);
-    //ll.push_front(4);
-    //ll.pop_front();
-    //ll.pop_back();
-    //ll.insert(4,1);
-    //cout<<ll.search(3);
-    ll.print();
+    // dll.print();      // 1-2-3-4-5-null
+    // dll.push_front(0);
+    // dll.print();      // 0-1-2-3-4-5-null
+
+    // dll.pop_front();
+    // dll.print();      // 1-2-3-4-5-null
+
+    // dll.pop_back();
+    // dll.print();      // 1-2-3-4-null
+
+    // dll.insert(10, 2);
+    // dll.print();      // 1-2-10-3-4-null
+
+    // cout << "Index of 10: " << dll.search(10) << "\n";
+
+    // dll.reverse();
+    // dll.print();      // 4-3-10-2-1-null
+
     return 0;
 }
