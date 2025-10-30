@@ -218,7 +218,7 @@ int main(){
     // inOrder(root);
     // postOrder(root);
     // levelOrder(root);
-    // cout<<height(root);
+    cout<<height(root);
     // cout<<nodes(root);
     // cout<<sum(root);
     // cout<<isSameTree(root,root1);

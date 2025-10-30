@@ -516,7 +516,7 @@ using namespace std;
 //time complexity O(logn)
 // Stores unique elements in SORTED order (internally uses a Self-Balancing BST).
 // Operations (insert, erase, find) take O(log N) time.
-int main(){
+// int main(){
     // set<int> s;                                   // Default constructor (empty set)
     // set<int> s_init = {10, 20, 30, 40};           // Initialization with initializer list
 
@@ -575,7 +575,7 @@ int main(){
     
     // s.clear();                                      // Clears all elements
 
-}
+// }
 
 //sorting
 // int main(){
