@@ -1,8 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std;
-
 // Definition for a binary tree node
 struct Node {
     int data;
@@ -35,6 +32,29 @@ Node* buildBST(vector<int> arr) {
         root = insert(root, val);
     }
     return root;
+}
+
+void levelOrder(Node* root) {
+    if (root == NULL) return; 
+    queue<Node*> q;
+    q.push(root);
+    q.push(NULL);  
+
+    while (!q.empty()) {
+        Node* curr = q.front();
+        q.pop();
+
+        if (curr == NULL) {
+            cout << endl;  // end of a level
+            if (!q.empty()) {
+                q.push(NULL); // add marker for next level
+            }
+        } else {
+            cout << curr->data << " ";
+            if (curr->left) q.push(curr->left);
+            if (curr->right) q.push(curr->right);
+        }
+    }
 }
 
 void preorder(Node* root){
@@ -123,7 +143,7 @@ bool helper(Node* root){
     is_valid_bst(root,NULL,NULL);
 }
 
-// Inorder traversal
+// Inorder traversal  //inorder of bst is always sorted
 vector<int> inorder(Node* root, vector<int>& arr) {
     if (root == nullptr) return arr;
     inorder(root->left, arr);
@@ -176,16 +196,12 @@ Node* largest_bst(Node* root, Node* min, Node* max) {
     return ans;
 }
 
-int max_width(Node* root){
-    
-}
 
 int main() {
     vector<int> arr = {3, 2, 1, 5, 6, 4};
     Node* root = buildBST(arr);
-    // cout << "Preorder traversal of BST: ";
-    preorder(root);
-
+    // Node*  l=delete_node(root,2);
+    // levelOrder(root);
     //cout<<search(root,6);
 
     //after deleting a node
