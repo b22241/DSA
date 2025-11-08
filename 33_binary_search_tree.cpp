@@ -196,10 +196,51 @@ Node* largest_bst(Node* root, Node* min, Node* max) {
     return ans;
 }
 
+Node* LCAinaBST(Node *root, int P, int Q){
+    // Write your code here.
+    if(root==NULL) return NULL;
+    if(root->data==P || root->data==Q) return root;
+
+    Node* left=LCAinaBST(root->left,P,Q);
+    Node* right=LCAinaBST(root->right,P,Q);
+
+    if(left && right ) return root;
+    if(left && !right) return left;
+    if(!left && right) return right;
+}
+
+void travel(Node* root,int target,map<int,int>&m,bool &yes){
+
+    if(root==NULL){
+        return;
+    }
+
+    travel(root->left,target,m,yes);
+    travel(root->right,target,m,yes);
+
+    if(m.find(target-root->data)!=m.end()){
+        yes=true;
+    }
+    m[root->data]=target-root->data;
+}
+bool twoSumInBST(Node* root, int target) {
+	//Write your code here
+    bool yes=false;
+    map<int,int>m;
+    travel(root,target,m,yes);
+    return yes;
+}
+
+
 
 int main() {
     vector<int> arr = {3, 2, 1, 5, 6, 4};
+   
     Node* root = buildBST(arr);
+    // Node* ans=LCAinaBST(root,4,2);
+    // cout<<ans->data;
+    // return twoSumInBST(root,10);
+
     // Node*  l=delete_node(root,2);
     // levelOrder(root);
     //cout<<search(root,6);

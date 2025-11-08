@@ -55,7 +55,6 @@ int kthSmallest(Node* root, int k) {
 
 }
 
-
 Node*  help(Node* root,int key){
     if(root==NULL) return NULL;
     if(root->data==key) return root;
@@ -73,34 +72,7 @@ Node* find(Node* root,int key){
     return find(root->right,key);
 }
 
-pair<int, int> predecessorSuccessor(Node *root, int key){
-    pair<int,int> p={-1,-1};
-    
-    Node* val = find(root,key);
-    if(val == NULL) return p;
 
-    Node* temp;
-
-    // Predecessor
-    if(val->left){
-        temp = val->left;
-        while(temp->right){
-            temp = temp->right;
-        }
-        p.first = temp->data;
-    }
-
-    // Successor
-    if(val->right){
-        temp = val->right;
-        while(temp->left){
-            temp = temp->left;
-        }
-        p.second = temp->data;
-    }
-
-    return p;
-}
 
 int main() {
     vector<int> arr = {3, 2, 1, 5, 6, 4};
@@ -108,7 +80,4 @@ int main() {
     // int ans=kthSmallest(root,3);
     // cout<<ans;
 
-    int key=5;
-    pair<int, int>p= predecessorSuccessor(root,key);
-    cout<<p.first<<p.second;
 }

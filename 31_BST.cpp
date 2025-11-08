@@ -389,9 +389,10 @@ int main(){
     vector<int> pree = {8,4,3,3,-1,-1,-2,2,-1,1,-1,-1,5,-1,2,-1,-1};
     int i = -1;
     Node* root = builtTree(pre,i);
-    // cout<<2;
+    // flatten(root);
+    // cout<<root->right->right->data;
     // Node* roott = builtTree(pree,i);
-    preOrder(root);
+    // preOrder(root);
     // inOrder(root);
     // postOrder(root);
     // levelOrder(root);
