@@ -31,7 +31,7 @@ public:
             return;
         }
 
-        // assumption: word will be in CAPS
+        // assumption: word will be in CAPS(capital letters)
         int index = word[0] - 'A';
         TrieNode* child;
 
