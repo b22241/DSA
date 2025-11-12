@@ -25,7 +25,7 @@ public:
 
         m.push(i);  // push after exploring all neighbors
     }
-        /// topological sort using bfs
+        /// topological sort using dfs
     void topologicalSort() {
         vector<bool> visited(V + 1, false);
         stack<int> m;
