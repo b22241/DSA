@@ -58,7 +58,7 @@ using namespace std;
 // //         ans.push_back(subset);
 // //         return;
 // //     }
-// //     // Include the current element in subset
+//     // Include the current element in subset
 // //     subset.push_back(arr[i]);
 // //     printSubsets_(arr, ans, i + 1, subset);
 // //     // Exclude the current element from subset (backtracking)
@@ -191,56 +191,56 @@ using namespace std;
 // };
 
 //rat in a maze problem
-void rat(vector<vector<int>> &maze, int row, int col, vector<char> &path, vector<vector<char>> &ans) {
-    int n = maze.size();
+// void rat(vector<vector<int>> &maze, int row, int col, vector<char> &path, vector<vector<char>> &ans) {
+//     int n = maze.size();
 
-    // boundary check
-    if (row < 0 || col < 0 || row >= n || col >= n || maze[row][col] == 0) return;
+//     // boundary check
+//     if (row < 0 || col < 0 || row >= n || col >= n || maze[row][col] == 0) return;
 
-    // reached destination
-    if (row == n - 1 && col == n - 1) {
-        ans.push_back(path);
-        return;
-    }
+//     // reached destination
+//     if (row == n - 1 && col == n - 1) {
+//         ans.push_back(path);
+//         return;
+//     }
 
-    // mark visited
-    maze[row][col] = 0;
+//     // mark visited
+//     maze[row][col] = 0;
 
-    // Move Down
-    path.push_back('D');
-    rat(maze, row + 1, col, path, ans);
-    path.pop_back();
+//     // Move Down
+//     path.push_back('D');
+//     rat(maze, row + 1, col, path, ans);
+//     path.pop_back();
 
-    // Move Right
-    path.push_back('R');
-    rat(maze, row, col + 1, path, ans);
-    path.pop_back();
+//     // Move Right
+//     path.push_back('R');
+//     rat(maze, row, col + 1, path, ans);
+//     path.pop_back();
 
-    // unmark visited (backtrack)
-    maze[row][col] = 1;
-}
+//     // unmark visited (backtrack)
+//     maze[row][col] = 1;
+// }
 
-int main() {
-    vector<vector<int>> maze = {
-        {1, 0, 0, 0},
-        {1, 1, 0, 1},
-        {1, 1, 0, 0},
-        {0, 1, 1, 1}
-    };
+// int main() {
+//     vector<vector<int>> maze = {
+//         {1, 0, 0, 0},
+//         {1, 1, 0, 1},
+//         {1, 1, 0, 0},
+//         {0, 1, 1, 1}
+//     };
 
-    vector<char> path;
-    vector<vector<char>> ans;
-    rat(maze, 0, 0, path, ans);
+//     vector<char> path;
+//     vector<vector<char>> ans;
+//     rat(maze, 0, 0, path, ans);
 
-    // print all paths
-    for (auto p : ans) {
-        for (char step : p) {
-            cout << step;
-        }
-        cout << " ";
-    }
-    cout << endl;
-}
+//     // print all paths
+//     for (auto p : ans) {
+//         for (char step : p) {
+//             cout << step;
+//         }
+//         cout << " ";
+//     }
+//     cout << endl;
+// }
 
 
 //combination sum probelm
