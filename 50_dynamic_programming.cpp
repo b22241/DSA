@@ -161,29 +161,40 @@ using namespace  std;
 //     cout << "Minimum Jumps: " << solve(v, 1, 0, dp) << endl;
 
 //     return 0;
+
 // }
 
-int longest(vector<int>&v,int index){
-    if(index==v.size()-1) return 0;
-}
-
-int main(){
-    vector<int>v={10,6,3,7,15,21,0,0,0,25};
-
-    int n=v.size();
-    int len;
-    int ans=1;
-    int prev;
-    for(int i=0;i<n;i++){
-        ans=max(ans,len);
-        len=1;
-        prev=v[i];
-        for(int j=i+1;j<n;j++){
-            if(v[j]>prev) {
-                len++;
-                prev=v[j];
-            }
-        }
+    bool isPossible(vector<int>&arr,int index,int s,int sum){
+        //base case
+        //jb sum usse bda ho jae to return krdo
+        if(s>sum) return false;
+        //jb arr ka sum uske half ke barabr ho jae to true return krdo
+        if(s==sum) return true;
+        if(index>arr.size()) return false;
+        
+        //ek element ke pas 2 choice h ya to vo a me hoga ya b me hoga
+        bool include=isPossible(arr,index+1,s+arr[index],sum);
+        bool exclude=isPossible(arr,index+1,s,sum);
+        
+        return include||exclude;
     }
-    cout<<ans;
-}
+    
+    
+    bool equalPartition(vector<int>& arr) {
+        // code here
+        int sum=0;
+        for(int val:arr) sum=sum+val;
+        if(sum&1) return false;
+        //if arr can be partitioned into 2 arr of equal sums then our problem is we have to make a arr out of this arr such that sum of it's elemens is sum/2
+        
+        return isPossible(arr,0,0,sum/2);
+    }
+
+    int main(){
+        vector<int>arr={1,5,11,5};
+        // bool ans=equalPartition(arr);
+        // cout<<ans;
+        
+    }
+
+

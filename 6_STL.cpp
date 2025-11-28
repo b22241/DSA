@@ -11,6 +11,7 @@
 using namespace std;
 #include <numeric> // Required for accumulate (if used)
 #include <iterator> // Required for iterators (though often included via <bits/stdc++.h>)
+#include<bits/stdc++.h>
 
 /// VECTORS
 // int main(){
@@ -648,4 +649,31 @@ using namespace std;
 //swap   swap(a,b);
 //min   *min_element(vec.begin(),vec.end())
 //max   *max_element(vec.begin(),vec.end())
-//builtin_popcount  cout<<__builtin_popcountll(15);   4(number of bits)
+//builtin_popcount  cout<<__builtin_popcountll(15);   4(number of ones in  a number)
+
+
+
+struct cmp {
+    bool operator()(const pair<int,int>& a, const pair<int,int>& b) const {
+        // sort by profit in descending order, break ties by index (larger index first)
+        if (a.first == b.first) {
+            return a.second > b.second;
+        }
+        return a.first > b.first;
+    }
+};
+int main(){
+    vector<int>deadline={2, 3, 1, 4, 2, 3, 1, 5, 4, 2, 3, 6, 1, 5, 4};
+    vector<int> profit ={50, 60, 20, 30, 100, 80, 10, 70, 40, 90, 35, 120, 15, 110, 55};
+    int n = deadline.size();
+    int time = *max_element(deadline.begin(), deadline.end());
+    vector<pair<int,int>> v;
+    for(int i = 0; i < n; i++){
+        v.push_back({profit[i], i});
+    }
+    sort(v.begin(), v.end(), cmp());
+    for(auto a : v){
+        cout << a.first << "->" << a.second << endl;
+    }
+    cout<<time;
+}
